@@ -9,7 +9,7 @@ A pure-Python world engine behind a stdio MCP server with five tools, narrated b
 ## Technical Context
 
 - **Language/Version**: Python 3.12
-- **Primary Dependencies**: `mcp` (FastMCP), `pytest`, both pinned
+- **Primary Dependencies**: `mcp` 2.x (`MCPServer`), `pytest`, both pinned
 - **Storage**: `keyhole/world.json` (read-only) and `state.json` (save file, git-ignored)
 - **Testing**: pytest against the engine only
 - **Target Platform**: GitHub Codespace (`mcr.microsoft.com/devcontainers/python:3.12`)
@@ -22,7 +22,7 @@ A pure-Python world engine behind a stdio MCP server with five tools, narrated b
 | I. Engine is the only authority | Every tool loads world and state through `Game`; the persona has no other tools |
 | II. Facts, not prose | Every method returns `{"ok": ...}` dicts |
 | III–V. GM rules | The persona file states them; the engine enforces locks, light and visibility |
-| VI. Minimal footprint | Standard library plus `mcp`; `mcp.run()` on stdio |
+| VI. Minimal footprint | Standard library plus `mcp`; `mcp.run(transport="stdio")` |
 | VII. Tests | `tests/test_engine.py` covers every refusal and the win |
 | VIII. Small | Four rooms, five items, five tools |
 
@@ -31,7 +31,7 @@ A pure-Python world engine behind a stdio MCP server with five tools, narrated b
 ```
 keyhole/
   engine.py      # Game: rules, load and save; no MCP import
-  server.py      # FastMCP "keyhole": five tools, each loads, acts and saves
+  server.py      # MCPServer "keyhole": five tools, each loads, acts and saves
   world.json
 tests/
   test_engine.py

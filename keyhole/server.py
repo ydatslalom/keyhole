@@ -6,7 +6,7 @@ file, acts and saves, so deleting state.json resets the game at any time.
 
 from pathlib import Path
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 from keyhole.engine import Game
 
@@ -14,7 +14,7 @@ HERE = Path(__file__).parent
 WORLD = HERE / "world.json"
 STATE = HERE.parent / "state.json"
 
-mcp = FastMCP("keyhole")
+mcp = MCPServer("keyhole", version="0.1.0")
 
 
 def _act(action):
@@ -61,4 +61,4 @@ def inventory() -> dict:
 
 
 if __name__ == "__main__":
-    mcp.run()  # stdio transport; never pass an HTTP/SSE transport or a port
+    mcp.run(transport="stdio")  # never an HTTP or SSE transport, never a port
