@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "keyhole": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "keyhole.server"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}

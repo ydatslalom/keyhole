@@ -1,0 +1,9 @@
+[project]
+name = "keyhole"
+version = "0.1.0"
+description = "A locked-room game whose narrator cannot lie."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

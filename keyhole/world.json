@@ -1,0 +1,47 @@
+{
+  "start": "study",
+  "rooms": {
+    "study": {
+      "desc": "A cramped study. Books nobody reads, a desk nobody uses.",
+      "items": ["note"],
+      "exits": {
+        "east": {"to": "hall"}
+      }
+    },
+    "hall": {
+      "desc": "A long, draughty hall. A rug lies crooked.",
+      "items": [],
+      "fixtures": ["rug"],
+      "hidden": {"rug": ["brass-key"]},
+      "exits": {
+        "west": {"to": "study"},
+        "north": {"to": "kitchen"},
+        "down": {"to": "cellar", "door": "cellar-door", "locked_by": "brass-key"},
+        "out": {"to": "outside", "door": "front-door", "locked_by": "iron-key"}
+      }
+    },
+    "kitchen": {
+      "desc": "A cold kitchen that smells of old soup.",
+      "items": ["candle", "matches"],
+      "exits": {
+        "south": {"to": "hall"}
+      }
+    },
+    "cellar": {
+      "desc": "Damp stone walls and the smell of earth.",
+      "dark": true,
+      "items": ["iron-key"],
+      "exits": {
+        "up": {"to": "hall"}
+      }
+    }
+  },
+  "uses": {
+    "note": {"action": "read", "text": "Whatever you lost, look under the rug."},
+    "rug": {"action": "reveal"},
+    "brass-key": {"action": "unlock", "target": "cellar-door"},
+    "iron-key": {"action": "unlock", "target": "front-door"},
+    "matches": {"action": "light", "target": "candle"}
+  },
+  "win": {"item": "iron-key", "target": "front-door"}
+}
